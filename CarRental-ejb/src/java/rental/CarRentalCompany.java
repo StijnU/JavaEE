@@ -23,11 +23,10 @@ import javax.persistence.OneToMany;
 @NamedQueries({
     @NamedQuery(name="CarRentalCompany.FindByName", query = "SELECT a from CarRentalCompany a WHERE a.name = :name"),
     @NamedQuery(name="CarRentalCompany.FindAll", query = "SELECT a from CarRentalCompany a"),
-    @NamedQuery(name="CarRentalCompany.FindAllCarTypes", query="SELECT DISTINCT c.cars.type FROM CarRentalCompany c WHERE c.name = :name"),
-    @NamedQuery(name="CarRentalCompany.FindCarTypeCarIds", query= "SELECT c.cars.id FROM CarRentalCompany c WHERE c.name = :name AND c.cars.type = :cartype"),
-    @NamedQuery(name="CarRentalCompany.FindCarReservations", query= "SELECT r FROM CarRentalCompany c JOIN c.cars.reservations r WHERE c.name = :name AND c.cars.id = :id"),
-    @NamedQuery(name="CarRentalCompany.FindCarTypeReservations", query="SELECT r FROM CarRentalCompany c JOIN c.cars.reservations r WHERE c.name = :name AND c.cars.type = :cartype"),
-    @NamedQuery(name="CarRentalCompany.FindAvailableCarTypes", query="SELECT DISTINCT car.type From Car car WHERE car.id IN (SELECT crc.cars.id FROM CarRentalCompany crc WHERE crc.cars.reservations.startDate NOT BETWEEN: :startDate AND :endDate AND crc.cars.reservations.endDate NOT BETWEEN :startDate AND :endDate")    
+    @NamedQuery(name="CarRentalCompany.FindAllCarTypes", query="SELECT DISTINCT cars.type FROM CarRentalCompany c JOIN c.cars cars WHERE c.name = :name"),
+    @NamedQuery(name="CarRentalCompany.FindCarTypeCarIds", query= "SELECT cars.id FROM CarRentalCompany c JOIN c.cars cars WHERE c.name = :name AND cars.type = :cartype"),
+    @NamedQuery(name="CarRentalCompany.FindCarReservations", query= "SELECT r FROM CarRentalCompany c JOIN c.cars cars JOIN cars.reservations r WHERE c.name = :name AND cars.id = :id"),
+    @NamedQuery(name="CarRentalCompany.FindCarTypeReservations", query="SELECT r FROM CarRentalCompany c JOIN c.cars cars JOIN cars.reservations r WHERE c.name = :name AND cars.type = :cartype"),
 })
 public class CarRentalCompany {
 

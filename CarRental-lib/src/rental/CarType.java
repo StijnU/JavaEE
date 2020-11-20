@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="CarType.FindPriceByName", query="SELECT c.rentalPricePerDay FROM CarType c WHERE c.name = :name")
+    @NamedQuery(name="CarType.FindPriceByName", query="SELECT c.rentalPricePerDay FROM CarType c WHERE c.name = :name"),
 })
 public class CarType implements Serializable{
     

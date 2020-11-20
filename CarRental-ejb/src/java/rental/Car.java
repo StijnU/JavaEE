@@ -13,9 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
+import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
+
+@NamedQueries({
+    @NamedQuery(name="Car.FindAvailableCarTypes", query="SELECT DISTINCT car.type From Car car JOIN car.reservations r WHERE r.startDate NOT BETWEEN :startDate AND :endDate AND r.endDate NOT BETWEEN :startDate AND :endDate")    
+})
 
 @Entity
 @TableGenerator(name="tab", initialValue=0, allocationSize=50)

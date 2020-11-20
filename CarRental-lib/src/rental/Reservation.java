@@ -11,8 +11,8 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({ 
-    @NamedQuery(name="Reservation.FindAllReservationsOfClient", query="SELECT COUNT(*) FROM Reservation r WHERE r.carRenter = :carrenter"),
-    @NamedQuery(name="Reservation.FindAllReservationsOfCarType", query="SELECT COUNT(*) FROM Reservation r WHERE r.carType = :cartype"),    
+    @NamedQuery(name="Reservation.FindAllReservationsOfClient", query="SELECT COUNT(r) FROM Reservation r WHERE r.carRenter = :carrenter"),
+    @NamedQuery(name="Reservation.FindAllReservationsOfCarType", query="SELECT COUNT(r) FROM Reservation r WHERE r.carType = :cartype"),    
 })
 public class Reservation extends Quote {
 
